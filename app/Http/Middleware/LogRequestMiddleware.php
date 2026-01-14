@@ -20,7 +20,6 @@ class LogRequestMiddleware
             'method' => $request->method(),
             'user_id' => optional($request->user())->id,
         ]);
-        
         return $next($request);
     }
 }

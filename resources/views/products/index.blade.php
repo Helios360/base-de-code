@@ -18,26 +18,30 @@
                             <li class="border-b pb-2">
                                 <strong>{{ $product->name }}</strong>
                                 — {{ $product->price }} €
-                                — {{ $product->is_public ? 'Public' : 'Privé' }}
+                                — {{ $product->is_public ? 'Public' : 'Privé' }} 
+                                @can('view-product', $product)
                                 <br />
                                 <a href="{{ route('products.show', $product) }}" class="ml-2 text-blue-600 underline">
                                     Voir
                                 </a>
+                                @endcan
                                 <br />
-                                {{-- Modifier --}}
-                                <a href="{{ route('products.edit', $product) }}" class="ml-2 text-green-600 underline">
-                                    Modifier
-                                </a>
+                                @can('manage-product', $product)
+                                    {{-- Modifier --}}
+                                    <a href="{{ route('products.edit', $product) }}" class="ml-2 text-green-600 underline">
+                                        Modifier
+                                    </a>
 
-                                {{-- Supprimer --}}
-                                <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="ml-2 text-red-600 underline"
-                                        onclick="return confirm('Supprimer ce produit ?')">
-                                        Supprimer
-                                    </button>
-                                </form>
+                                    {{-- Supprimer --}}
+                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="ml-2 text-red-600 underline"
+                                            onclick="return confirm('Supprimer ce produit ?')">
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                @endcan
                             </li>
                         @endforeach
                     </ul>
