@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Product;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,30 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       // Utilisateur "admin"
-        $admin = User::factory()->create([
-            'name'     => 'Admin',
-            'email'    => 'admin@example.com',
-            'password' => bcrypt('password'),
-        ]);
+        // User::factory(10)->create();
 
-        // Utilisateur "user"
-        $user = User::factory()->create([
-            'name'     => 'User',
-            'email'    => 'user@example.com',
-            'password' => bcrypt('password'),
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
         ]);
-
-        // Produits de l'admin
-        Product::factory()->count(3)->create([
-            'user_id' => $admin->id,
-        ]);
-
-        // Produits de l'utilisateur simple
-        Product::factory()->count(3)->create([
-            'user_id' => $user->id,
-        ]);
-
-        $this->call(RolesAndPermissionsSeeder::class);
     }
 }
