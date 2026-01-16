@@ -1,4 +1,10 @@
-<h1>{{ $gift->name }}</h1>
+@extends('layouts.app')
+
+@section('title', 'Liste des cadeaux')
+
+@section('content')
+
+<h2>{{ $gift->name }}</h2>
 @if(session('success'))
     <p>{{ session('success') }}</p>
 @endif
@@ -13,3 +19,5 @@
 @endif
 <a href="{{ route('home') }}"> Retour </a>
 <a href="{{ route('gifts.edit', $gift) }}"> Modifier </a>
+
+@endsection

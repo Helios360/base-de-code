@@ -1,8 +1,9 @@
-<h1>Liste de cadeaux</h1>
+@extends('layouts.app')
 
-@if(session('success'))
-    <p>{{ session('success') }}</p>
-@endif
+@section('title', 'Liste des cadeaux')
+
+@section('content')
+
 
 <a href="{{ route('gifts.create') }}">Ajouter un cadeau</a>
 
@@ -22,3 +23,4 @@
     </li>
 @endforeach
 </ul>
+@endsection

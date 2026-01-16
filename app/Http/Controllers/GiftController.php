@@ -31,9 +31,9 @@ class GiftController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|string|min:3|max:50',
-            'url' => 'nullable|string|starts_with:http://, https://',
+            'url' => ['nullable', 'url', 'regex:/^https?:\/\/.+/i'],
             'details' => 'nullable|string',
-            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'price' => ['required', 'numeric', 'decimal:0,2'],
         ]);
         Gift::create($validate);
         return redirect()->route('home')->with('success', 'Cadeau ajouté !');
@@ -62,9 +62,9 @@ class GiftController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|string|min:3|max:50',
-            'url' => 'nullable|string|starts_with:http://, https://',
+            'url' => ['nullable', 'url', 'regex:/^https?:\/\/.+/i'],
             'details' => 'nullable|string',
-            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'price' => ['required', 'numeric', 'decimal:0,2'],
         ]);
         Gift::update($validate);
         return redirect()->route('gift.show')->with('success', 'Cadeau ajouté !');
