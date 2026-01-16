@@ -8,7 +8,7 @@
 
 <form action="{{ route('gifts.update', $gift) }}" method="POST">
     @method('PUT')
-    @include('gifts._form', ['gift' => '$gift', 'buttonText' => 'Modifer'])
+    @include('gifts._form', ['gift' => $gift, 'buttonText' => 'Modifer'])
 </form>
 
 <a href="{{ route('gifts.show', $gift) }}">Annuler</a>

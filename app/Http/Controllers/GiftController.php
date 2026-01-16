@@ -66,8 +66,8 @@ class GiftController extends Controller
             'details' => 'nullable|string',
             'price' => ['required', 'numeric', 'decimal:0,2'],
         ]);
-        Gift::update($validate);
-        return redirect()->route('gift.show')->with('success', 'Cadeau ajouté !');
+        $gift->update($validate);
+        return redirect()->route('gifts.show', $gift)->with('success', 'Cadeau ajouté !');
     }
 
     /**
